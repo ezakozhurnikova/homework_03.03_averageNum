@@ -3,6 +3,8 @@ import java.io.*;
 public class Main {
     public static void main(String[] args) {
 
+
+
         /*Задача 1
 Написать метод, читающий текстовый файл и возвращающий строку, состояшую из всех прочитанных строчек.
 Пример: В файле имеется
@@ -12,7 +14,8 @@ cc
 Метод вернет aaa bbbb cc*/
 
 string("input1.txt");
-
+        File file=new File("input.txt");
+        System.out.println(string1(file));
 /*Задача 2
 Есть не пустой текстовый файл такого вида:
 1
@@ -25,6 +28,7 @@ string("input1.txt");
 Присылайте ссылки на решения в Вашем гитхабе!*/
 
         averageNum("numbers.txt");
+        System.out.println(countAverage("numbers.txt"));
 
 
     }
@@ -41,6 +45,19 @@ string("input1.txt");
         } catch (IOException e) {
             e.getMessage();
         }
+
+    }
+
+    public static String string1(File file){
+        String s=" ";
+        try(BufferedReader br = new BufferedReader(new FileReader(file))){
+            String line;
+            while((line= br.readLine())!=null){
+                s=s+" "+line;
+            }
+        }catch (IOException e){
+            e.getMessage();
+        }return  s;
 
     }
 
@@ -65,5 +82,19 @@ string("input1.txt");
             e.getMessage();
         }
 
+    }
+    public static double countAverage(String fileIn){
+        int sum=0;
+        int count=0;
+        String nextInt;
+        try(BufferedReader br = new BufferedReader(new FileReader(fileIn))){
+            while((nextInt= br.readLine())!=null){
+                sum=sum+Integer.parseInt(nextInt);
+                count++;
+            }
+        }catch (IOException e){
+            e.getMessage();
+
+        }return sum/count;
     }
 }
